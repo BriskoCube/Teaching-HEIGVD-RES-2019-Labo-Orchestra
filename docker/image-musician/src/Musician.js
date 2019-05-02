@@ -18,8 +18,10 @@ module.exports = class Musician{
     play(){
         const data = {
             uuid: this.uuid,
-            name: this.instrument.name,
-            sound: this.instrument.sound
+            instrument: {
+                name: this.instrument.name,
+                sound: this.instrument.sound
+            }
         };
         const instrument = this.instrument;
 
