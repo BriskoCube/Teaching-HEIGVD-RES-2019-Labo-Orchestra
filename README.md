@@ -111,9 +111,17 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | Who is going to **listen for UDP datagrams** and what should happen when a datagram is received? |
 | | *The auditor is listening for all instruments datagrams. Update instrument seen timestamp, store uid, sound and instrument name* |
 |Question | What **payload** should we put in the UDP datagrams? |
-| | *Enter your response here...* |
+| | *A json object containing uuid, instrument name and sound* |
 |Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures? |
-| | *Enter your response here...* |
+| | ```
+{
+            uuid: this.uuid,
+            instrument: {
+                name: this.instrument.name,
+                sound: this.instrument.sound
+            }
+        }
+        ``` |
 
 
 ## Task 2: implement a "musician" Node.js application
@@ -121,21 +129,23 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | In a JavaScript program, if we have an object, how can we **serialize it in JSON**? |
-| | *Enter your response here...*  |
+| | *JSON.stringify(...)*  |
 |Question | What is **npm**?  |
-| | *Enter your response here...*  |
+| | *Node packet manager. Manage js dependencies*  |
 |Question | What is the `npm install` command and what is the purpose of the `--save` flag?  |
-| | *Enter your response here...*  |
+| | *It downloads and install all packet defined in `package.json`*  |
 |Question | How can we use the `https://www.npmjs.com/` web site?  |
-| | *Enter your response here...*  |
+| | *yes*  |
 |Question | In JavaScript, how can we **generate a UUID** compliant with RFC4122? |
-| | *Enter your response here...*  |
+| | *With the dependency `'uuid/v4'` and by calling the `uuid()` function*  |
 |Question | In Node.js, how can we execute a function on a **periodic** basis? |
-| | *Enter your response here...*  |
+| | `javascript setInterval(<callback function>, <interval>);`|
 |Question | In Node.js, how can we **emit UDP datagrams**? |
-| | *Enter your response here...*  |
+| | this.socket.send(message, 0, message.length, this.port, this.ip, function(err, bytes) {
+            console.log(`I'm playing ${instrument.name} which sounds ${instrument.sound}`);
+        });  |
 |Question | In Node.js, how can we **access the command line arguments**? |
-| | *Enter your response here...*  |
+| | `args[0]`  |
 
 
 ## Task 3: package the "musician" app in a Docker image
