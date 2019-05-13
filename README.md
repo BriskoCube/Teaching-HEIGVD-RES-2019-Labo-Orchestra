@@ -113,15 +113,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | What **payload** should we put in the UDP datagrams? |
 | | *A json object containing uuid, instrument name and sound* |
 |Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures? |
-| | ```
-{
-            uuid: this.uuid,
-            instrument: {
-                name: this.instrument.name,
-                sound: this.instrument.sound
-            }
-        }
-        ``` |
+| | `{ uuid: this.uuid, instrument: { name: this.instrument.name, sound: this.instrument.sound } } ` |
 
 
 ## Task 2: implement a "musician" Node.js application
@@ -141,9 +133,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | In Node.js, how can we execute a function on a **periodic** basis? |
 | | `javascript setInterval(<callback function>, <interval>);`|
 |Question | In Node.js, how can we **emit UDP datagrams**? |
-| | this.socket.send(message, 0, message.length, this.port, this.ip, function(err, bytes) {
-            console.log(`I'm playing ${instrument.name} which sounds ${instrument.sound}`);
-        });  |
+| | this.socket.send(message, 0, message.length, this.port, this.ip, function(err, bytes) {console.log(`I'm playing ${instrument.name} which sounds ${instrument.sound}`); });  |
 |Question | In Node.js, how can we **access the command line arguments**? |
 | | `args[0]`  |
 
